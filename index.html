@@ -1,0 +1,59 @@
+IKTA Family Budget
+
+1. 🔐 User Authentication & Onboarding
+Google Sign-In: One-tap login via GoogleAuthHelper (maps email, display name, and photo URL).
+Role Assignment: Automatically assigns roles: Head of Family (Admin) or Family Member.
+Family Group Setup:
+Head of Family: Creates and administers the family group.
+Family Member: Requests to join via Head Email.
+Approval Gatekeeper: Directs unapproved members to PendingApprovalScreen until granted access.
+
+2. 🛡️ Role-Based Access Control (RBAC) & Presets
+Features customizable permissions (MemberPermissions) with 6 pre-configured presets:
+Private Member: Manage own expenses; restricted from viewing other members' records or family totals.
+Family Contributor (Default): Manage own expenses; full access to shared family expenses, totals, categories, and monthly reports.
+Shared Financial Member: View own expenses plus specific allowed family members' expenses.
+Family Finance Viewer: Read-only visibility into totals, category charts, and reports; cannot add/edit entries.
+Restricted Access: Temporarily suspends expense entry and shared data access while keeping personal profile features.
+Custom Configuration: Head of Family can toggle granular permissions across 4 areas:
+Expense Entry: Add/Edit/Delete own or other members' expenses.
+Visibility: Configure access to own, Head, all members, totals, or specific allowed emails.
+Reports: Access category charts, monthly reports, and exports.
+Administration: Manage categories and approve/reject membership requests.
+
+3. 💵 Transaction Entry & Smart Keypad
+Custom Keypad (CalculatorKeypadView): Built-in calculator (+, -, ×, ÷, =, %) with haptic vibration feedback on keypress.
+Transaction Metadata:
+Types: EXPENSE, INCOME, TRANSFER.
+Details: Custom notes, tags, receipt images, date/time pickers, and currency selector.
+Author Info: Captures addedByEmail, addedByName, addedByPhotoUrl, and lastModifiedTimestamp.
+
+4. 🎨 Category Customization & Visual Styling
+Presets & Custom Categories: Pre-packaged categories (Shopping, Groceries, Bills, Healthcare, Transport, Salary, etc.) with custom icon keys and hex color coding.
+Media Attachments: Upload custom pictures/images for categories.
+Color Customization: Choose custom background (colorHex) and chart (chartColorHex) hex colors.
+
+5. 📅 Configurable Financial Year Engine
+Flexible Cycles (FinancialYearConfig): Supports standard cycles (e.g., 1 Apr – 31 Mar, 1 Jan – 31 Dec) or custom start/end dates.
+Auto-Labeling & Filtering: Dynamically computes labels (e.g., "FY 2025-26") and aggregates budgets within the active cycle.
+
+6. 📊 Analytics, Charts & Interactive Calendar
+Dashboard Summary (HomeScreen): Real-time metrics for Income, Expenses, Net Balance, and budget progress bars.
+Interactive Calendar (CalendarScreen): Monthly grid with daily status indicators; click any day to inspect transactions.
+Visual Analytics (ChartsScreen): Category pie/donut charts, breakdown percentages, and monthly trend comparisons.
+Filterable Reports (ReportsScreen): Filter history by date ranges, categories, transaction type, or member.
+
+7. 📑 Report Export Engine (ExportHelper)
+Multi-Format Exports: Generate formatted CSV spreadsheets, PDF documents with header summaries, and Excel (.xlsx) files.
+Android Intent Sharing: Instantly share reports via FileProvider (Email, WhatsApp, Drive, or direct print).
+
+8. ☁️ Real-Time Cloud Sync & Offline Architecture
+Firebase Integration: Uses Firestore and Realtime Database for instant multi-device sync and live edit updates.
+Offline-First Architecture: Queue transaction entries/deletions offline using PendingOfflineTransaction buffers (UPSERT/DELETE).
+Network Monitor & Sync Status: Tracks connectivity states (SYNCED, SYNCING, OFFLINE, ERROR), automatically flushes queues when online, and displays visual indicators (SyncStatusIcon).
+
+9. 🔔 Notifications & System Alerts (AppNotificationHelper)
+Android Notification Channels: Dedicated channels for budget threshold warnings and family management updates.
+System Alerts: Triggers alerts when approaching budget limits or when family membership requests are submitted or approved.
+
+
